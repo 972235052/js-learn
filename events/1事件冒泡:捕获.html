@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件冒泡</title>
+	<style>
+		*{ margin: 0 ; padding: 0 ;}
+		html,body{ height: 100%;}
+	</style>
+</head>
+<body>
+	<p>事件执行顺序 以及标签名</p>
+	
+	<div id="myDiv">	
+		
+		<input type="button" value="按钮" />
+	</div>
+	<script type="text/javascript">
+		var oDiv = document.getElementById('myDiv'),
+			oBody = document.getElementsByTagName('body')[0],
+			oInput = oDiv.getElementsByTagName('input')[0];
+		
+		
+		function a(event){
+			console.log('a' + '    ' + event.target.tagName)
+			console.log()
+		}
+		function b(event){
+			console.log('b' + '    ' + event.target.tagName)
+		}
+		function c(event){
+			console.log('c' + '    ' + event.target.tagName)
+		}
+		
+		oBody.addEventListener('click',a,true);
+		oBody.addEventListener('click',b,true);
+		oBody.addEventListener('click',c,false);
+
+		oDiv.addEventListener('click',a,true);
+		oDiv.addEventListener('click',b,false);
+
+		oInput.onclick = c;
+		oInput.addEventListener('click',a,true);
+		oInput.addEventListener('click',b,false);
+		
+
+	</script>
+</body>
+</html>

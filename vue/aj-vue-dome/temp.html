@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="always">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<base target="_blank">
+<title>temp</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.layout{
+		margin: 40px auto;
+		width: 1190px;
+	}
+	a{
+		color: #333;
+	}
+	a.red{
+		color: #f00;
+	}
+	li{
+		margin-bottom: 20px;
+	}
+</style>
+</head>
+<body>
+    <div class="layout" id="test">
+    	<div>{{a}}</div>
+    	<div>{{{b}}}</div>
+    	<div>{{{a + b}}}</div>
+    	<p v-if="c">看得见!</p>
+    	<p v-if="d">看不见!</p>
+
+    	<a v-bind:href="e">baidu</a></br>
+
+    	<a v-bind:class="{'red':e}">baidu</a></br>
+    	<a v-bind:class="e1">对象颜色baidu</a></br>
+    	<a v-bind:class="e2">数组颜色baidu</a>
+
+    	<a v-on:click="f">点击事件</a>
+    	<div>{{{g}}}</div>
+    	<div>{{{h}}}</div>
+    	<div>{{{i}}}</div>
+
+    	<div v-if="false">
+		  Sorry
+		</div>
+		<div v-else>
+		  Not sorry
+		</div>
+
+		<div v-show="false">show not</div>
+		<div v-show="true">show ok</div>
+
+		<ul id="example-1">
+		  <li v-for="item in ['one','two','three']">
+		    {{ item }}
+		  </li>
+		</ul>
+
+		<ul id="repeat-object" class="demo">
+		  <li v-for="value in {a:1,b:2}">
+		    {{ $key }} : {{ value }}
+		  </li>
+		</ul>
+		<ul id="repeat-object" class="demo">
+		  <li v-for="(k, v) in {a:3,b:4}">
+		    {{ k }} : {{ v }}
+		  </li>
+		</ul>
+		<div>
+		  <span v-for="n in 10">{{ n }} </span>
+		</div>
+
+    </div>
+</body>
+<script type="text/x-template" id="test-tpl" >
+	
+</script>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+	  el: '#test',
+	  data: {
+	    a: '<span>标签一起显示了</span>',
+	    b: '<span>标签没有显示</span>',
+	    c:1,
+	    d:0,
+	    e:"http://www.baidu.com",
+	    e1:{
+			'red': true
+		},
+		e2:['red'],
+	    f:function(){
+	    	alert(1)
+	    },
+	    i:0
+	  },
+	  computed:{
+	  	g:function(){
+	  		var a = "-------";
+	  		return a + this.a + this.b;
+	  	},
+	  	h:{
+		    get: function () {
+		      return this.i+'---';
+		    },
+		    // setter
+		    set: function (value) {
+		      this.i = value/2
+		    }
+		  }
+	  }
+	});
+	vm.h = 45;
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

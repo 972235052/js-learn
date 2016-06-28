@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="always">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<base target="_blank">
+<title>slot</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.layout{
+		margin: 40px auto;
+		width: 1190px;
+	}
+	a{
+		color: #333;
+	}
+</style>
+</head>
+<body>
+    <div class="layout" id="test">
+    	<ul>
+    		<li>
+    			<template id="child-template">
+					<div>
+					  <h1>This is my component!</h1>
+					</div>
+				</template>
+				<child>
+				  <p>This is some original content</p>
+				  <p>This is some more original content</p>
+				</child>
+			</li>
+    	</ul>
+    </div>
+    <div class="layout" id="test1">
+    	<ul>
+    		<li>
+    			<template id="child1-template">
+					<div>
+					  <h1>This is my component!</h1>
+					  <slot>
+					    如果没有分发内容则显示我。
+					  </slot>
+					</div>
+				</template>
+				<child>
+				  <p>This is some original content</p>
+				  <p>This is some more original content</p>
+				</child>
+			</li>
+    	</ul>
+    </div>
+    <div class="layout" id="test2">
+    	<ul>
+    		<li>
+    			<template id="child2-template">
+					<div>
+					  <slot name="one"></slot>
+					  <slot></slot>
+					  <slot name="two"></slot>
+					</div>
+				</template>
+				<child>
+				  <p slot="one">One</p>
+				  <p slot="two">Two</p>
+				  <p>Default A</p>
+				</child>
+			</li>
+    	</ul>
+    </div>
+</body>
+<script type="text/x-template" id="test-tpl" >
+	
+</script>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript">
+
+	new Vue({
+		el: '#test',
+		components: {
+		    'child': Vue.extend({template: '#child-template'})
+		}
+	})
+	new Vue({
+		el: '#test1',
+		components: {
+		    'child': Vue.extend({template: '#child1-template'})
+		 }
+	})
+	new Vue({
+		el: '#test2',
+		components: {
+		    'child': Vue.extend({template: '#child2-template'})
+		 }
+	})
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

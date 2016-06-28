@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="a" />
+    <input type="text" v-model="b" />
+    <input type="text" value="{{ parseInt(a) + parseInt(b)}}" />
+
+
+</div>
+<script>
+    var vm  = new Vue({
+        el: "#app",
+        data: {
+            a : 3,
+            b : 4
+        }
+    });
+
+    vm.$watch('a',function(a){
+        this.c = a + this.b
+    })
+    vm.$watch('b',function(b){
+        this.c = b + this.a
+    })
+</script>
+</body>
+</html>

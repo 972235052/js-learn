@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="always">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<base target="_blank">
+<title>组件</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.layout{
+		margin: 40px auto;
+		width: 1190px;
+	}
+	a{
+		color: #333;
+	}
+</style>
+</head>
+<body>
+    <div class="layout" id="test1">
+    	<ul>
+    		<li>
+    			<template id="child-template">
+					<input v-model="msg"></br>
+					<button v-on:click="notify">$broadcast Event</button>
+					</br>{{messages}}
+				</template>
+				<div id="events-example">
+					<p>Messages: {{ messages }}<button v-on:click="notify">dispatch Event</button></p>
+					<child v-ref:profile></child>
+				</div>
+			</li>
+    	</ul>
+    </div>
+</body>
+<script type="text/x-template" id="test-tpl" >
+	
+</script>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript">
+	//broadcast广播事件，事件向下传导给所有的后代
+	//$dispatch() 派发事件，事件沿着父链冒泡；
+	Vue.component('child', {
+		template: '#child-template',
+		data: function () {
+			return { msg: 'hello' }
+		},
+		methods: {
+			notify: function () {
+				if (this.msg.trim()) {
+					this.$dispatch('child-msg', this.msg)
+					this.msg = ''
+				}
+
+				this.$dispatch('on-bbb', 'on-bbb')
+			}
+		},
+		events: {
+			'f-msg': function (msg) {
+			// 事件回调内的 `this` 自动绑定到注册它的实例上
+				this.msg = msg;
+			}
+		}
+	})
+
+	// 初始化父组件
+	// 将收到消息时将事件推入一个数组
+	var parent = new Vue({
+		el: '#test1',
+		data: {
+			messages: [],msgg:23
+		},
+		methods: {
+			notify: function () {
+				this.$broadcast('f-msg',this.messages.toString());
+				this.$broadcast('on-aaa','on-aaa');
+				this.$emit( 'on-bbb', '自己出发时间' )
+			}
+		},
+		// 在创建实例时 `events` 选项简单地调用 `$on`
+		events: {
+			'child-msg': function (msg) {
+			// 事件回调内的 `this` 自动绑定到注册它的实例上
+				alert('child-msg');
+				this.messages.push(msg)
+			}
+		}
+	})
+	var child = parent.$refs.profile;
+	child.$on('on-aaa', function(msg) {
+		alert(msg)
+	});
+	parent.$on('on-bbb', function(msg) {
+		alert(msg)
+	});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="always">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<base target="_blank">
+<title>动态组件</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.layout{
+		margin: 40px auto;
+		width: 1190px;
+	}
+	a{
+		color: #333;
+	}
+	.fade-transition {
+	  transition: opacity .3s ease;
+	}
+	.fade-enter, .fade-leave {
+	  opacity: 0;
+	}
+</style>
+</head>
+<body>
+    <div class="layout" id="test">
+    	<ul>
+    		<li>
+    			<div v-my-test:f.t.c="msg"></div>
+			</li>
+			<li>
+				<div v-my-test="{ color: 'white', text: 'hello!' }"></div>
+			</li>
+    	</ul>
+    </div>
+</body>
+<script type="text/x-template" id="test-tpl" >
+	
+</script>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript">
+
+	Vue.directive('my-test', {
+		bind: function () {
+			// alert('demo bound!')
+		},
+		update: function (value) {
+			this.el.innerHTML =
+			'name - '       + this.name + '<br>' +
+			'expression - ' + this.expression + '<br>' +
+			'argument - '   + this.arg + '<br>' +
+			'modifiers - '  + JSON.stringify(this.modifiers) + '<br>' +
+			'value - '      + value;
+		},
+		unbind:function () {
+			// alert('demo unbind!')
+		}
+	})
+	new Vue({
+		el: '#test',
+		data: {
+			msg: 'hello!'
+		}
+	})
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

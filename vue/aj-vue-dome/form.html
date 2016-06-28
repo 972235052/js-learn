@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="always">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<base target="_blank">
+<title>event</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.layout{
+		margin: 40px auto;
+		width: 1190px;
+	}
+	a{
+		color: #333;
+	}
+	a.red{
+		color: #f00;
+	}
+	li{
+		margin-bottom: 20px;
+	}
+</style>
+</head>
+<body>
+    <div class="layout" id="test">
+    	<form>
+    		<ul>
+    			<li>
+    				<input type="checkbox" id="checkbox" v-model="checked">
+					<label for="checkbox">{{ checked }}</label>
+    			</li>
+    			<li>
+    				<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+					<label for="jack">Jack</label>
+					<input type="checkbox" id="john" value="John" v-model="checkedNames">
+					<label for="john">John</label>
+					<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+					<label for="mike">Mike</label>
+					<br>
+					<span>Checked names: {{ checkedNames }}</span>
+    			</li>
+    			<li>
+    				<input type="radio" id="one" value="One" v-model="picked">
+					<label for="one">One</label>
+					<br>
+					<input type="radio" id="two" value="Two" v-model="picked">
+					<label for="two">Two</label>
+					<br>
+					<span>Picked: {{ picked }}</span>
+    			</li>
+    			<li>
+    				<select v-model="selected">
+					  <option selected>A</option>
+					  <option>B</option>
+					  <option>C</option>
+					</select>
+					<span>Selected: {{ selected }}</span>
+    			</li>
+    			<li>
+    				<select v-model="selected2" multiple>
+					  <option selected>A</option>
+					  <option>B</option>
+					  <option>C</option>
+					</select>
+					<br>
+					<span>Selected: {{ selected2 }}</span>
+    			</li>
+    			<li>
+    				<input v-model="msg" lazy>{{msg}}</br>
+    				<input v-model="age" number>{{age}}</br>
+    				<input v-model="ttt" debounce="500">{{ttt}}</br><!-- 只是延迟数据写入 -->
+    			</li>
+    		</ul>
+    	</form>
+    </div>
+</body>
+<script type="text/x-template" id="test-tpl" >
+	
+</script>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#test',
+		data:{
+			checkedNames:[]
+		}
+	});
+	vm.h = 45;
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="always">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<base target="_blank">
+<title>过度动画</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.layout{
+		margin: 40px auto;
+		width: 1190px;
+	}
+	a{
+		color: #333;
+	}
+	a.red{
+		color: #f00;
+	}
+	li{
+		margin-bottom: 20px;
+	}
+	.test-transition {
+		transition: all .3s ease;
+		height: 30px;
+		padding: 10px;
+		background-color: #eee;
+		overflow: hidden;
+	}
+	.test-enter, .test-leave {
+		height: 0;
+		padding: 0 10px;
+		opacity: 0;
+	}
+
+	.bounce-transition {
+  display: inline-block; /* 否则 scale 动画不起作用 */
+}
+.bounce-enter {
+  animation: bounce-in .5s;
+}
+.bounce-leave {
+  animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+</style>
+</head>
+<body>
+    <div class="layout" id="test">
+    	<ul>
+    		<li><button v-on:click="show=!show">click</button><div v-if="show" transition="test">hello</div> </li>
+    		<!--默认v-transition, .v-enter 和 .v-leave-->
+    	</ul>
+    </div>
+</body>
+<script type="text/x-template" id="test-tpl" >
+	
+</script>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+	  el: '#test',
+	  data: {
+	    show: false,
+	    // transitionName: 'fade'
+	  },
+	  methods:{
+
+	  }
+	})
+	Vue.transition('test', {
+
+	  beforeEnter: function (el) {
+	  	console.log('beforeEnter')
+	    el.textContent = 'beforeEnter'
+	  },
+	  enter: function (el) {
+	  	console.log('enter')
+	    el.textContent = 'enter'
+	  },
+	  afterEnter: function (el) {
+	  	console.log('beforeEnter')
+	    el.textContent = 'afterEnter'
+	  },
+	  enterCancelled: function (el) {
+	  	console.log('enterCancelled')
+	    // handle cancellation
+	  },
+
+	  beforeLeave: function (el) {
+	  	console.log('beforeLeave')
+	    el.textContent = 'beforeLeave'
+	  },
+	  leave: function (el) {
+	  	console.log('leave')
+	    el.textContent = 'leave'
+	  },
+	  afterLeave: function (el) {
+	  	console.log('afterLeave')
+	    el.textContent = 'afterLeave'
+	  },
+	  leaveCancelled: function (el) {
+	  	console.log('leaveCancelled')
+	    // handle cancellation
+	  }
+	})
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

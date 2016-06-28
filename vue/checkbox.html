@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>checkbox</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="checkbox" value="a"  id="a" v-model="a" />
+    a
+    <input type="checkbox" value="b" id="b" v-model="a" />
+    b
+    <input type="checkbox" value="c" id="c" v-model="a" />
+    c
+    <p>{{a}}</p>
+</div>
+<script>
+    var vm  = new Vue({
+        el: "#app",
+        data: {
+          a: ['a','c']
+        }
+    });
+
+
+</script>
+</body>
+</html>
