@@ -11,14 +11,17 @@
 
     <ul>
         <li v-for="todo in todos">
-            <span data-html="{{todo.text  }}">{{ todo.text }}</span>
+            <span data-html="{{todo.text  }}">{{ todo.text | hh }}</span>
             <em>{{todo.text == '1' ? 'y' : 'n'}}</em>
             <button @click="removeTodo($index)">X</button>
         </li>
     </ul>
 </div>
 <script>
-    new Vue({
+    Vue.filter('hh',function(value){
+        return value.replace(/\d/g,'n');
+    })
+    var vm = new Vue({
         el: "#app",
         data: {
             newTodo: '文字',
@@ -40,6 +43,7 @@
             }
         }
     })
+
 </script>
 </body>
 </html>

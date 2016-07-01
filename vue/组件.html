@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <myinput link="http://www.baidu.com" text="百度"></myinput>
+
+</div>
+<div id="box">
+</div>
+<script>
+   var MyInpt = Vue.extend({
+       props:['text','link'],
+       template:'<a href="{{link}}">{{text}}</a>'
+
+   })
+   // Vue.component('input',MyInpt);∂
+
+    var vm = new Vue({
+        el:'#app',
+        components:{
+            'myinput':MyInpt
+        }
+    })
+   var vm = new Vue({
+       el:'#box'
+   })
+</script>
+</body>
+</html>
