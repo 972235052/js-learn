@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <my-validator>
+            <input type="text" />
+            <p></p>
+
+        </my-validator>
+    </div>
+    <script type="text/javascript">
+        var Validator = Vue.extend({
+            template:'<div>一个组件</div>'
+        })
+
+        Vue.component('my-validator',Validator);
+
+        new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//cdn.bootcss.com/vue/1.0.17/vue.js"></script>
+    <script src="//cdn.bootcss.com/vue-validator/2.0.0-alpha.22/vue-validator.js"></script>
+</head>
+<body>
+<div id="blockBox">
+<input
+        class="form-control"
+        type="text"
+        v-model="table.rowA.columnA"
+        v-validate:message-aa="{required:true}"/>
+<div class="errors">
+    <p v-if="$blockBoxValidator.messageAa.required" class="lang" data-key="blockBoxAA" />
+</div>
+</div>
+<script>
+    var blockBox = new Vue({
+        el: "#blockBox",
+        data: {
+            table: {
+                rowA: {
+                    columnA: "a-a",
+                    columnB: 'a-b',
+                    columnC: 'a-c'
+                },
+                rowB: {
+                    columnA: 'b-a',
+                    columnB: 'b-b',
+                    columnC: 'b-c'
+                }
+            }
+        }});
+</script>
+</body>
+</html>
