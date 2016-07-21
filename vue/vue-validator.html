@@ -4,36 +4,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="//cdn.bootcss.com/vue/1.0.17/vue.js"></script>
-    <script src="//cdn.bootcss.com/vue-validator/2.0.0-alpha.22/vue-validator.js"></script>
+    <script src="v.js"></script>
 </head>
 <body>
-<div id="blockBox">
-<input
-        class="form-control"
-        type="text"
-        v-model="table.rowA.columnA"
-        v-validate:message-aa="{required:true}"/>
-<div class="errors">
-    <p v-if="$blockBoxValidator.messageAa.required" class="lang" data-key="blockBoxAA" />
-</div>
+<div id="box">
+    <validator name="validation">
+      <form novalidate>
+        <input type="text" v-validate:comment="{ minlength: 2, maxlength: 15 }">
+        <div>
+          <span v-show="$validation.comment.minlength">最小字数</span>
+          <span v-show="$validation.comment.maxlength">最大字数</span>
+        </div>
+        <input type="submit" value="send" v-if="valid">
+      </form>
+    </validator>
 </div>
 <script>
     var blockBox = new Vue({
-        el: "#blockBox",
-        data: {
-            table: {
-                rowA: {
-                    columnA: "a-a",
-                    columnB: 'a-b',
-                    columnC: 'a-c'
-                },
-                rowB: {
-                    columnA: 'b-a',
-                    columnB: 'b-b',
-                    columnC: 'b-c'
-                }
-            }
-        }});
+        el: "#box",
+        });
 </script>
 </body>
 </html>

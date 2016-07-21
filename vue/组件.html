@@ -16,6 +16,9 @@
 <script>
    var MyInpt = Vue.extend({
        props:['text','link'],
+       forHtml:function(){
+
+       },
        template:'<a href="{{link}}">{{text}}</a>'
 
    })
@@ -25,6 +28,14 @@
         el:'#app',
         components:{
             'myinput':MyInpt
+        },
+        data:{
+          valtue:[
+            {
+              link:'www.baidu.com'},
+              text:'html'
+            }
+          ]
         }
     })
    var vm = new Vue({

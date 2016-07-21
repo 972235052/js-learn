@@ -8,21 +8,24 @@
 </head>
 <body>
     <div id="app">
-        <my-validator>
+        <my-validator id="b">
             <input type="text" />
             <p></p>
 
         </my-validator>
     </div>
     <script type="text/javascript">
+        Vue.config.debug = true
         var Validator = Vue.extend({
-            template:'<div>一个组件</div>'
+            template:'<div>一个组件</div>',
+            replace:true
         })
 
         Vue.component('my-validator',Validator);
 
         new Vue({
-            el:"#app"
+            el:"#app",
+            replace:true
         })
     </script>
 </body>
